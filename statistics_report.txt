@@ -1,0 +1,18 @@
+
+================ Sparse (500 runs) ================
+Dijkstra        | T(ms): 0.001841 (+/-8.93717e-05) | Relax: 6.104 | Mem: 0.546875 KB
+Bellman-Ford    | T(ms): 0.000947 (+/-5.03297e-05) | Relax: 17.27 | Mem: 0.546875 KB
+Floyd-Warshall  | T(ms): 0.0215338 (+/-0.000999928) | Relax: 371.658 | Mem: 0.945312 KB
+Johnson         | T(ms): 0.0578978 (+/-0.00388122) | Relax: 292.814 | Mem: 0.632812 KB
+
+================ Dense (500 runs) ================
+Dijkstra        | T(ms): 0.371817 (+/-0.00904793) | Relax: 18493 | Mem: 207.188 KB
+Bellman-Ford    | T(ms): 0.387061 (+/-0.0127766) | Relax: 56514 | Mem: 207.188 KB
+Floyd-Warshall  | T(ms): 19.5658 (+/-0.944678) | Relax: 3.70843e+06 | Mem: 128 KB
+Johnson         | T(ms): 58.427 (+/-2.33649) | Relax: 3.00195e+06 | Mem: 208.188 KB
+
+================ Mixed (500 runs) ================
+Dijkstra: Skipped
+Bellman-Ford    | T(ms): 0.006344 (+/-0.000745362) | Relax: 413.608 | Mem: 2.5625 KB
+Floyd-Warshall  | T(ms): 0.0680672 (+/-0.00428742) | Relax: 4101.81 | Mem: 13.1328 KB
+Johnson         | T(ms): 0.199832 (+/-0.0162338) | Relax: 2023.59 | Mem: 2.88281 KB
