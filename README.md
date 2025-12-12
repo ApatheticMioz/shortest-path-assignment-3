@@ -1,61 +1,101 @@
 # Shortest Path Algorithms Benchmark
 
-C++ implementations of classic shortest-path algorithms (Dijkstra, Bellman-Ford, Floyd-Warshall, Johnson) with interactive solving and automated benchmarking/visualization for sparse, dense, and mixed graphs. Includes LaTeX report assets and generated DOT graphs for quick visualization.
+C++ implementations of classic shortest-path algorithms (Dijkstra, Bellman-Ford, Floyd-Warshall, Johnson) with interactive solving and automated benchmarking for sparse, dense, and mixed graphs.
 
-## Key Features
-- Implements four shortest-path algorithms with relaxation counting and simple memory estimators.
-- Random graph generator for sparse, dense, and mixed (optionally negative) graphs; exports Graphviz DOT files (`viz_*.dot`).
-- Interactive mode that reads a graph from `input.txt`, supports directed/undirected graphs, and prints per-algorithm results.
-- Benchmark mode (500 runs per graph type) that records timing/relaxation statistics to `statistics_report.txt`.
-- LaTeX report (`report.tex`) with pseudocode, analysis tables, and discussion.
+**Status:** Archived / Refactored
 
-## Tech Stack
-- C++17 (STL)
-- Graphviz (optional, for rendering DOT files)
-- LaTeX (for the included report)
+## Description
+
+This project provides optimized implementations of four fundamental shortest-path algorithms:
+
+- **Dijkstra's Algorithm** — Single-source shortest path for non-negative weights, O((V+E) log V)
+- **Bellman-Ford Algorithm** — Handles negative weights with cycle detection, O(VE)
+- **Floyd-Warshall Algorithm** — All-pairs shortest paths, O(V³)
+- **Johnson's Algorithm** — Efficient all-pairs for sparse graphs with negative weights, O(V² log V + VE)
+
+Each algorithm includes relaxation counting, memory estimation, and performance benchmarking capabilities.
 
 ## Project Structure
-- `i232523_Source_Asst-3.cpp` — interactive driver: read a graph, run all algorithms, or run a small experiment suite.
-- `solution-test.cpp` — benchmark harness: 500-run statistics per graph type, writes `statistics_report.txt`.
-- `input.txt` — user-provided graph input for interactive mode (created if missing).
-- `viz_*.dot` — generated DOT graphs for Sparse/Dense/Mixed sample runs.
-- `images/` — screenshots referenced by the LaTeX report.
-- `report.tex` — assignment report.
 
-## Build
-Use g++ (or any C++17 compiler).
+```
+.
+├── shortest_path.cpp   # Interactive solver and experimental analysis
+├── benchmark.cpp       # Statistical benchmark harness (500 iterations)
+├── input.txt           # Sample graph input file
+├── LICENSE             # MIT License
+├── CONTRIBUTING.md     # Contribution guidelines
+├── CHANGELOG.md        # Version history
+└── README.md           # This file
+```
+
+## Requirements
+
+- C++17 compatible compiler (g++, clang++)
+- Graphviz (optional, for DOT file visualization)
+
+## Installation
+
+Clone the repository and build using any C++17 compiler:
 
 ```bash
-# Interactive solver / experiment runner
- g++ -std=c++17 -O2 i232523_Source_Asst-3.cpp -o shortest_path
+git clone https://github.com/ApatheticMioz/shortest-path-assignment-3.git
+cd shortest-path-assignment-3
+```
 
-# Benchmark harness
- g++ -std=c++17 -O2 solution-test.cpp -o benchmark
+## Build
+
+```bash
+# Build interactive solver
+g++ -std=c++17 -O2 shortest_path.cpp -o shortest_path
+
+# Build benchmark harness
+g++ -std=c++17 -O2 benchmark.cpp -o benchmark
 ```
 
 ## Usage
 
-### Interactive solver (menu)
-1) Prepare `input.txt` with:
+### Interactive Solver
+
+1. Prepare `input.txt` with your graph:
+   ```
+   V E
+   u v w
+   u v w
+   ...
+   ```
+   Where V = vertices, E = edges, and each edge is defined as (source, destination, weight).
+
+2. Run the solver:
+   ```bash
+   ./shortest_path
+   ```
+
+3. Choose from the menu:
+   - **Option 1:** Solve graph from `input.txt`
+   - **Option 2:** Run experimental analysis with random graphs
+
+### Benchmark Harness
+
+Run statistical benchmarks (500 iterations per graph type):
+
+```bash
+./benchmark
 ```
-V E
-u v w
-u v w
-...
-```
-2) Run `shortest_path`, choose option `1`, confirm directed (1) or undirected (0) when prompted.
-3) The program prints distances for each algorithm; Johnson reports negative cycles as needed.
 
-### Experimental analysis (menu option 2)
-- Runs randomized sparse/dense/mixed graphs, outputs timing/relaxations table per config, and saves `viz_Sparse.dot`, `viz_Dense.dot`, `viz_Mixed.dot` for visualization.
+Results are saved to `statistics_report.txt` with mean, median, standard deviation, and 95% confidence intervals.
 
-### Benchmark harness
-- Run `benchmark` to execute 500 iterations per graph type; results are appended to `statistics_report.txt` with mean, median, std dev, and 95% CI for time and relaxations.
+### Visualizing Graphs
 
-## Visualizing DOT graphs
-Use https://dreampuf.github.io/GraphvizOnline/ or `dot -Tpng viz_Sparse.dot -o sparse.png` (Graphviz required).
+Generated DOT files can be visualized using:
+- Online: https://dreampuf.github.io/GraphvizOnline/
+- Command line: `dot -Tpng viz_Sparse.dot -o sparse.png`
 
 ## Notes
-- Dijkstra is skipped when negative edges are present.
-- Johnson’s algorithm detects negative cycles and aborts the run in that case.
-- Default graph sizes: sparse/mixed draw V∈[10,50]; dense draws V∈[100,200].
+
+- Dijkstra's algorithm is automatically skipped when negative edge weights are detected
+- Johnson's algorithm reports negative cycles when detected
+- Graph sizes: Sparse/Mixed use V∈[10,50]; Dense uses V∈[100,200]
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
