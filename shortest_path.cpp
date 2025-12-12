@@ -1,10 +1,7 @@
-/*
- * Name: Muhammad Abdullah Ali
- * Roll Num: i23-2523
- * Section: 5A
- * Department: Department of Data Science
- * Course: Design and Analysis of Algorithms
- * Assignment 3: Shortest Path Algorithms
+/**
+ * shortest_path.cpp
+ * Interactive solver and experimental analysis for shortest-path algorithms.
+ * Implements Dijkstra, Bellman-Ford, Floyd-Warshall, and Johnson algorithms.
  */
 
 #include <iostream>
