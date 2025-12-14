@@ -1,9 +1,7 @@
 /**
- * solution-test.cpp
- * FIXED & SAFE VERSION
- * - Replaced raw pointers with std::vector to fix SIGSEGV/Memory Corruption.
- * - 500 Iterations.
- * - Handles Negative Cycles.
+ * benchmark.cpp
+ * Statistical benchmark harness for shortest-path algorithms.
+ * Runs 500 iterations per graph type with mean, median, std dev, and 95% CI.
  */
 
 #include <iostream>
